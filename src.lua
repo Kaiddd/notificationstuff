@@ -105,7 +105,7 @@ return function(Arguments)
         AsspectRatioConstraint_2.Name = "AsspectRatioConstraint"
         AsspectRatioConstraint_2.Parent = ErrorIcon
         
-        Debris:AddItem(ErrorMessage, Duration)
+        Debris:AddItem(ErrorMessage, Duration+1)
         local Tween = TweenService:Create(ErrorMessage,TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position = UDim2.new(0, 0, 0, ErrorMessage.AbsolutePosition.Y)})
         Tween:Play()
         task.wait(0.6)
