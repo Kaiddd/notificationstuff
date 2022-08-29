@@ -5,7 +5,7 @@ end
 local TweenService = cloneref(game:GetService("TweenService"))
 local CoreGui
 
-if gethui and identifyexecutor and identifyexecutor() == "ScriptWare" then
+if gethui then
     CoreGui = cloneref(gethui())
 elseif gethiddengui then
     CoreGui = cloneref(gethiddengui())
@@ -25,7 +25,7 @@ return function(Arguments)
         local ScreenGui
         if CoreGui:FindFirstChild("Error") then
             ScreenGui = CoreGui:FindFirstChild("Error")
-        elseif syn and syn.protect_gui then
+        elseif syn and syn.protect_gui and not gethui then
             ScreenGui = Instance.new("ScreenGui")
             syn.protect_gui(ScreenGui)
             ScreenGui.Parent = CoreGui
@@ -105,14 +105,14 @@ return function(Arguments)
         AsspectRatioConstraint_2.Name = "AsspectRatioConstraint"
         AsspectRatioConstraint_2.Parent = ErrorIcon
         
-        Debris:AddItem(ErrorMessage, Duration)
+        Debris:AddItem(ErrorMessage, Duration+4)
         local Tween = TweenService:Create(ErrorMessage,TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position = UDim2.new(0, 0, 0, ErrorMessage.AbsolutePosition.Y)})
         Tween:Play()
         task.wait(0.6)
         local IconTween = TweenService:Create(ErrorIcon,TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Rotation = 0})
         IconTween:Play()
         task.wait(0.4)
-        wait(Duration)
+        task.wait(Duration)
         Tween = TweenService:Create(ErrorMessage,TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.In),{Position = UDim2.new(-1, 0, 0, ErrorMessage.AbsolutePosition.Y)})
         Tween:Play()
     end))
