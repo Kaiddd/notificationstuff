@@ -7,8 +7,6 @@ local CoreGui
 
 if gethui then
     CoreGui = cloneref(gethui())
-elseif gethiddengui then
-    CoreGui = cloneref(gethiddengui())
 else
     CoreGui = cloneref(game:GetService("CoreGui"))
 end
